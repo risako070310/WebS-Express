@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>最寄り駅リスト</title>
+</head>
+<body>
+	<div>
+		<div>
+			<% @stations.each do |station| %>
+			<div class="station">
+				<span class="line"><%= station["line"] %></span>
+				<span class="name"><%= station["name"] %></span>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</body>
+</html>
