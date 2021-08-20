@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>最寄り駅リスト</title>
+	
+	<!-- jQueryの読み込み -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
 	<div>
@@ -14,6 +17,28 @@
 			</div>
 			<% end %>
 		</div>
+		<div id="detail">
+			<div>
+				<h2>次の駅</h2>
+			</div>
+			<div class="next"></div>
+		</div>
 	</div>
+	<script>
+		window.onload = function(){
+			$(".station").click(function(){
+				var line = $(".line", this).text();
+				var name = $(".name", this).text();
+				$.ajax("/api/station", {
+					type: "GET",
+					data: {line: line, name: name},
+					datatype: "json"
+				})
+				.done(function(json){
+					$("#detail .next").text(json["next"]);
+				});
+			});
+		};
+	</script>
 </body>
 </html>
