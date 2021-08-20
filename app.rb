@@ -35,7 +35,8 @@ get '/api/station' do
         response = { error: "No Station." }
     else 
         response = {
-            next: json["response"]["station"][0]["next"]
+            next: json["response"]["station"][0]["next"],
+            prev: json["response"]["station"][0]["prev"]
         }
     end
     json response

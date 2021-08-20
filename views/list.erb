@@ -19,6 +19,10 @@
 		</div>
 		<div id="detail">
 			<div>
+				<h2>前の駅</h2>
+			</div>
+			<div class="prev"></div>
+			<div>
 				<h2>次の駅</h2>
 			</div>
 			<div class="next"></div>
@@ -36,6 +40,7 @@
 				})
 				.done(function(json){
 					$("#detail .next").text(json["next"]);
+					$("#detail .prev").text(json["prev"]);
 				});
 			});
 		};
