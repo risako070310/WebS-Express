@@ -4,12 +4,16 @@ require 'sinatra/reloader' if development?
 require 'open-uri'
 require 'json'
 require 'net/http'
+require 'sinatra/activerecord'
+require './models'
 
 get '/' do
+    @histories = History.all
     erb :form
 end
 
 get '/list' do
+    History.create!(x: params[:x], y: params[:y])
     uri = URI("http://express.heartrails.com/api/json")
     uri.query = URI.encode_www_form({
         method: "getStations",

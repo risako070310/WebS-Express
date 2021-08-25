@@ -14,5 +14,15 @@
 		    </form>
 		</div>
 	</div>
+	<h2>検索履歴</h2>
+	<div>
+		<% @histories.each do |history| %>
+		<div>
+			<div>
+				<%= history.x %>, <%= history.y %>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </body>
 </html>
