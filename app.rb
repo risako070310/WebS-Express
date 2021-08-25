@@ -9,6 +9,7 @@ require './models'
 
 get '/' do
     @histories = History.all
+    @favorites = History.where(favorite: true)
     erb :form
 end
 
@@ -44,4 +45,17 @@ get '/api/station' do
         }
     end
     json response
+end
+
+post '/:id/delete' do
+    history = History.find(params[:id])
+    history.delete
+    redirect "/"
+end
+
+post '/:id/update' do
+    history = History.find(params[:id])
+    history.favorite = !history.favorite
+    history.save
+    redirect "/"
 end

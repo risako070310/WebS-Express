@@ -20,6 +20,30 @@
 		<div>
 			<div>
 				<%= history.x %>, <%= history.y %>
+				<div>
+					<% if history.favorite %>
+						<form action="<%= history.id %>/update" method="post">
+							<button type="submit">いいね解除</button>
+						</form>
+					<% else %>
+						<form action="<%= history.id %>/update" method="post">
+							<button type="submit">お気に入り</button>
+						</form>
+					<% end %>
+					<form action="<%= history.id %>/delete" method="post">
+						<button type="submit">[x]</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<h2>お気に入り</h2>
+	<div>
+		<% @favorites.each do |favorite| %>
+		<div>
+			<div>
+				<%= favorite.x %>, <%= favorite.y %>
 			</div>
 		</div>
 		<% end %>
