@@ -17,24 +17,43 @@
 	<script src="https://kit.fontawesome.com/bd60690b21.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div>
-		<div>
+	<div class="container-fluid">
+		<h2 class="text-center my-5"><%= @x %>,<%= @y %>の最寄り駅</h2>
+		<div class="row d-flex justify-content-center">
 			<% @stations.each do |station| %>
-			<div class="station">
-				<span class="line"><%= station["line"] %></span>
-				<span class="name"><%= station["name"] %></span>
+			<div class="card col-lg-2 m-1 station" data-toggle="modal" data-target="#modal">
+				<div class="card-body">
+					<p class="line my-1"><%= station["line"] %></p>
+					<i class="fas fa-subway my-1"></i>
+					<p class="name my-1"><%= station["name"] %></p>
+				</div>
 			</div>
 			<% end %>
 		</div>
-		<div id="detail">
-			<div>
-				<h2>前の駅</h2>
+		<div class="model fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="detail" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div id="detail" class="modal-content">
+					<div class="modal-header text-center">
+						<h2>前の駅</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-lable="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
 			</div>
-			<div class="prev"></div>
-			<div>
-				<h2>次の駅</h2>
+			<div class="modal-body text-center prev"></div>
+			
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div id="detail" class="modal-content">
+					<div class="modal-header text-center">
+						<h2>次の駅</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-lable="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
 			</div>
-			<div class="next"></div>
+			<div class="modal-body text-center next"></div>
 		</div>
 	</div>
 	<script>
